@@ -41,6 +41,7 @@
         android:ems="10"
         android:hint="@string/hintNome"
         android:inputType="textPersonName"
+        android:textColor="@color/textColorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -54,6 +55,7 @@
         android:hint="+55"
         android:inputType="number"
         android:textAlignment="center"
+        android:textColor="@color/textColorPrimary"
         app:layout_constraintStart_toStartOf="@+id/txtNome"
         app:layout_constraintTop_toBottomOf="@+id/txtNome" />
 
@@ -61,11 +63,11 @@
         android:id="@+id/nEstado"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="84"
         android:inputType="number"
         android:textAlignment="center"
+        android:textColor="@color/textColorPrimary"
         app:layout_constraintStart_toEndOf="@+id/nPais"
         app:layout_constraintTop_toTopOf="@+id/nPais" />
 
@@ -73,11 +75,11 @@
         android:id="@+id/nNumero"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:ems="10"
         android:hint="99998888"
         android:inputType="number"
         android:textAlignment="center"
+        android:textColor="@color/textColorPrimary"
         app:layout_constraintStart_toEndOf="@+id/nEstado"
         app:layout_constraintTop_toTopOf="@+id/nEstado" />
 
