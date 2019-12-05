@@ -3,4 +3,7 @@
     <string name="txtCopia">Clone</string>
     <string name="hintNome">Digite seu nome</string>
     <string name="btnCadastrar">Cadastrar</string>
+    <string name="txtValidacao">Validação</string>
+    <string name="txtValidacaoExplicacao">Você recebeu um SMS para validação do seu número, digite o código de validação abaixo:</string>
+    <string name="hintValidacaoCodigo">Digite o código</string>
 </resources>
