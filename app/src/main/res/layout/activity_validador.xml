@@ -74,14 +74,14 @@
         app:layout_constraintTop_toBottomOf="@+id/txtValidacaoExplicacao" />
 
     <Button
-        android:id="@+id/btnCadastrar2"
+        android:id="@+id/btnValidar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/elementsMediumSpace"
         android:layout_marginEnd="16dp"
         android:background="@color/design_default_color_background"
-        android:text="@string/btnCadastrar"
+        android:text="@string/btnValidar"
         app:backgroundTint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
