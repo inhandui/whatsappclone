@@ -3,6 +3,8 @@ package com.cursoandroid.whatsappclone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText codPais;
     private EditText codArea;
     private EditText telefone;
+    private Button btnCadastrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         codPais = findViewById(R.id.nPais);
         codArea = findViewById(R.id.nEstado);
         telefone = findViewById(R.id.nNumero);
+        btnCadastrar = findViewById(R.id.btnCadastrar);
 
         /* Setting up masks */
         SimpleMaskFormatter maskPais = new SimpleMaskFormatter("+NN");
@@ -44,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
         codPais.addTextChangedListener(maskWatcherPais);
         codArea.addTextChangedListener(maskWatcherArea);
         telefone.addTextChangedListener(maskWatcherTelefone);
+
+        /* Setting up button click listener */
+
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 }
