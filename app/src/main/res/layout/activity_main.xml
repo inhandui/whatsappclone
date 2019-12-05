@@ -61,7 +61,7 @@
 
     <EditText
         android:id="@+id/nEstado"
-        android:layout_width="40dp"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="84"

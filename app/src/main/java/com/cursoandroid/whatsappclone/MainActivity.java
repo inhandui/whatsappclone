@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,8 +32,18 @@ public class MainActivity extends AppCompatActivity {
         codArea = findViewById(R.id.nEstado);
         telefone = findViewById(R.id.nNumero);
 
+        /* Setting up masks */
+        SimpleMaskFormatter maskPais = new SimpleMaskFormatter("+NN");
+        SimpleMaskFormatter maskArea = new SimpleMaskFormatter(" (NN) ");
+        SimpleMaskFormatter maskTelefone = new SimpleMaskFormatter("NNNN-NNNN");
 
+        MaskTextWatcher maskWatcherPais = new MaskTextWatcher(codPais, maskPais);
+        MaskTextWatcher maskWatcherArea = new MaskTextWatcher(codArea, maskArea);
+        MaskTextWatcher maskWatcherTelefone = new MaskTextWatcher(telefone, maskTelefone);
 
-//        SimpleMaskFormatter maskNome = new SimpleMaskFormatter()
+        codPais.addTextChangedListener(maskWatcherPais);
+        codArea.addTextChangedListener(maskWatcherArea);
+        telefone.addTextChangedListener(maskWatcherTelefone);
+
     }
 }
