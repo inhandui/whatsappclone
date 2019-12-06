@@ -1,4 +1,4 @@
-package com.cursoandroid.whatsappclone;
+package com.cursoandroid.whatsappclone.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.cursoandroid.whatsappclone.R;
+import com.cursoandroid.whatsappclone.data.Usuario;
+import com.cursoandroid.whatsappclone.helper.Preferencias;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Random;
+import java.lang.Integer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private EditText codArea;
     private EditText telefone;
     private Button btnCadastrar;
+    private Usuario usuario;
+    private String numeroCompleto;
+    private Random random;
+    private int numeroRandom;
+    private String token;
+    private Preferencias preferencias;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* Setting up masks */
         SimpleMaskFormatter maskPais = new SimpleMaskFormatter("+NN");
-        SimpleMaskFormatter maskArea = new SimpleMaskFormatter(" (NN) ");
+        SimpleMaskFormatter maskArea = new SimpleMaskFormatter("NN");
         SimpleMaskFormatter maskTelefone = new SimpleMaskFormatter("NNNN-NNNN");
 
         MaskTextWatcher maskWatcherPais = new MaskTextWatcher(codPais, maskPais);
@@ -54,7 +67,22 @@ public class MainActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                usuario = new Usuario();
+                usuario.setNome(txtNome.getText().toString());
+                numeroCompleto = codPais.getText().toString() + codArea.getText().toString() + telefone.getText().toString();
+                numeroCompleto = numeroCompleto.replace("+", "");
+                numeroCompleto = numeroCompleto.replace("-", "");
+                usuario.setTelefoneCompleto(numeroCompleto);
 
+                random = new Random();
+                numeroRandom = random.nextInt( 9999 - 1000) + 1000;
+                token = String.valueOf(numeroRandom);
+
+                preferencias = new Preferencias(MainActivity.this);
+                preferencias.salvarUsuarioReferencias(usuario, token);
+
+                HashMap<String, String> usuario = preferencias.getDadosUsuario();
+                Toast.makeText(MainActivity.this, "usuario: " + usuario.get("token") + "- nome: " + usuario.get("nome") + " tel: " + usuario.get("telefone"),  Toast.LENGTH_LONG).show();
             }
         });
 

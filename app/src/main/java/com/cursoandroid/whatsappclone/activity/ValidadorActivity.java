@@ -1,8 +1,10 @@
-package com.cursoandroid.whatsappclone;
+package com.cursoandroid.whatsappclone.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.cursoandroid.whatsappclone.R;
 
 public class ValidadorActivity extends AppCompatActivity {
 
