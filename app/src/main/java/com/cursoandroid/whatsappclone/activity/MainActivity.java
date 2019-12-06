@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private int numeroRandom;
     private String token;
     private Preferencias preferencias;
+    private int localPhone = 5554;
 
 
     @Override
