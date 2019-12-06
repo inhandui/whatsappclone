@@ -1,5 +1,6 @@
 package com.cursoandroid.whatsappclone.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String localPhone = "5554";
     private SmsManager smsManager;
     private String msgToken = "";
+    private static final int REQUEST_PERMISSION_SEND_SMS = 0;
 
 
     @Override
@@ -92,24 +94,45 @@ public class MainActivity extends AppCompatActivity {
 
                 /* Perform send SMS */
                 int permitionCheck = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS);
-
                 if (permitionCheck == PackageManager.PERMISSION_GRANTED){
-                    //send SMS
-                    msgToken = getString(R.string.mensagem_token) + " " + token;
-                    smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(localPhone, null,  msgToken, null, null);
-                    Toast.makeText(MainActivity.this, R.string.envio_ok, Toast.LENGTH_LONG).show();
+                    //****WARNING***** Change localPhone to numeroCompleto before release to production (onRequestPermissionsResults too)
+                    enviarSMS(localPhone, token);
                 }
                 else {
                     //try again
-                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 0);
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, REQUEST_PERMISSION_SEND_SMS);
                     Toast.makeText(MainActivity.this, R.string.erro_permissao, Toast.LENGTH_SHORT).show();
                 }
+
+
 
 //                HashMap<String, String> usuario = preferencias.getDadosUsuario();
 //                Toast.makeText(MainActivity.this, "usuario: " + usuario.get("token") + "- nome: " + usuario.get("nome") + " tel: " + usuario.get("telefone"),  Toast.LENGTH_LONG).show();
             }
         });
 
+    }
+
+    private void enviarSMS(String telefone, String token) {
+        msgToken = getString(R.string.mensagem_token) + " " + token;
+        smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage(telefone, null,  msgToken, null, null);
+        Toast.makeText(MainActivity.this, R.string.envio_ok, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode){
+            case REQUEST_PERMISSION_SEND_SMS:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //****WARNING***** Change localPhone to numeroCompleto before release to production
+                    enviarSMS(localPhone, token);
+                } else {
+                    Toast.makeText(MainActivity.this, R.string.erro_permissao, Toast.LENGTH_SHORT).show();
+                }
+                return;
+        }
     }
 }
