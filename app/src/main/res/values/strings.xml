@@ -7,4 +7,7 @@
     <string name="txtValidacaoExplicacao">Você recebeu um SMS para validação do seu número, digite o código de validação abaixo:</string>
     <string name="hintValidacaoCodigo">Digite o código</string>
     <string name="btnValidar">Validar</string>
+    <string name="erro_permissao">O app não tem permissão para enviar mensagens</string>
+    <string name="envio_ok">Menssagem enviada</string>
+    <string name="mensagem_token">Seu token é </string>
 </resources>
