@@ -12,4 +12,6 @@
     <string name="mensagem_token">Seu token é </string>
     <string name="token_ok">Token validado</string>
     <string name="erro_token">O token não é válido</string>
+    <string name="hintSenha">Digite sua senha</string>
+    <string name="btnLogar">Logar</string>
 </resources>
