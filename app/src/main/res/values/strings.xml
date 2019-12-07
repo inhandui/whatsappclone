@@ -14,4 +14,5 @@
     <string name="erro_token">O token não é válido</string>
     <string name="hintSenha">Digite sua senha</string>
     <string name="btnLogar">Logar</string>
+    <string name="txtCadastro">Não tem conta? Cadastre-se!</string>
 </resources>
