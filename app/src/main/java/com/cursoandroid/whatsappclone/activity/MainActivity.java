@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         msgToken = getString(R.string.mensagem_token) + " " + token;
         smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(telefone, null,  msgToken, null, null);
-        Toast.makeText(MainActivity.this, R.string.envio_ok, Toast.LENGTH_LONG).show();
+        validarToken();
     }
 
     @Override
@@ -134,5 +135,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return;
         }
+    }
+
+    private void validarToken(){
+        Toast.makeText(MainActivity.this, R.string.envio_ok, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(MainActivity.this, ValidadorActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
