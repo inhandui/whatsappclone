@@ -12,10 +12,12 @@
         android:layout_width="150dp"
         android:layout_height="113dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/txtNome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         app:srcCompat="@drawable/usuario" />
 
     <EditText
@@ -29,7 +31,9 @@
         android:hint="@string/hintNome"
         android:inputType="textPersonName"
         android:textColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/txtEmail"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usuario_logo" />
 
@@ -41,7 +45,9 @@
         android:ems="10"
         android:hint="@string/hintEmail"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/txtSenha"
         app:layout_constraintEnd_toEndOf="@+id/txtNome"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/txtNome"
         app:layout_constraintTop_toBottomOf="@+id/txtNome" />
 
@@ -53,7 +59,9 @@
         android:ems="10"
         android:hint="@string/hintSenha"
         android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btnCadastrar"
         app:layout_constraintEnd_toEndOf="@+id/txtEmail"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/txtEmail"
         app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
 
@@ -64,7 +72,9 @@
         android:layout_marginTop="@dimen/elementsMediumSpace"
         android:text="@string/btnCadastrar"
         app:backgroundTint="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/txtSenha"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/txtSenha"
         app:layout_constraintTop_toBottomOf="@+id/txtSenha" />
 </androidx.constraintlayout.widget.ConstraintLayout>
