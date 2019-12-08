@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.cursoandroid.whatsappclone.R;
 import com.cursoandroid.whatsappclone.data.Usuario;
-import com.cursoandroid.whatsappclone.helper.Preferencias;
+import com.cursoandroid.whatsappclone.data.Preferencias;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 

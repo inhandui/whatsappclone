@@ -1,4 +1,4 @@
-package com.cursoandroid.whatsappclone.helper;
+package com.cursoandroid.whatsappclone.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
