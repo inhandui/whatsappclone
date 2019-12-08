@@ -15,4 +15,5 @@
     <string name="hintSenha">Digite sua senha</string>
     <string name="btnLogar">Logar</string>
     <string name="txtCadastro">Não tem conta? Cadastre-se!</string>
+    <string name="hintEmail">Digite seu email</string>
 </resources>
