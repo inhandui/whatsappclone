@@ -32,7 +32,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private String result;
+    private int result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,21 +81,26 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                     try {
                         throw task.getException();
                     } catch (FirebaseAuthWeakPasswordException e){
-                        Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario_senhaFraca, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario_senhaFraca, Toast.LENGTH_SHORT).show();
+                        result = R.string.erro_cadastroUsuario_senhaFraca;
                         e.printStackTrace();
 
                     } catch (FirebaseAuthInvalidCredentialsException e){
-                        Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario_emailMalFormado, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario_emailMalFormado, Toast.LENGTH_SHORT).show();
+                        result = R.string.erro_cadastroUsuario_emailMalFormado;
                         e.printStackTrace();
 
                     } catch (FirebaseAuthUserCollisionException e){
-                        Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario_emailJaCadastrado, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario_emailJaCadastrado, Toast.LENGTH_SHORT).show();
+                        result = R.string.erro_cadastroUsuario_emailJaCadastrado;
                         e.printStackTrace();
 
                     } catch (Exception e){
                         Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario , Toast.LENGTH_SHORT).show();
+                        result = R.string.erro_cadastroUsuario;
                         e.printStackTrace();
                     }
+                    Toast.makeText(CadastroUsuarioActivity.this, result , Toast.LENGTH_LONG).show();
                 }
             }
         });
