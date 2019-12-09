@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -27,6 +28,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private Usuario usuario;
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,13 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(CadastroUsuarioActivity.this, R.string.cadastroUsuario_ok, Toast.LENGTH_SHORT).show();
+                    firebaseUser = task.getResult().getUser();
+                    usuario.setId(firebaseUser.getUid());
+                    usuario.salvar();
                 }
                 else {
                     Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario, Toast.LENGTH_SHORT).show();
+                    //Show to the user what is wrong them is not system fault
                 }
             }
         });
