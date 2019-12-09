@@ -16,6 +16,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
+    /* Function to signup user */
     public void abrirCadastroUsuario(View view){
         Intent intent = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
         startActivity(intent);

@@ -15,6 +15,7 @@ public class Usuario {
 
     }
 
+    /* save user data to firebase */
     public void salvar(){
         databaseReference = ConfiguracaoFirebase.getFirebase();
         databaseReference.child("usuarios").child(getId()).setValue(this);

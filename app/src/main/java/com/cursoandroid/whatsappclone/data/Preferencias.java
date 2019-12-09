@@ -7,6 +7,7 @@ import com.cursoandroid.whatsappclone.data.Usuario;
 
 import java.util.HashMap;
 
+/* Class to save user preferences  */
 public class Preferencias {
     private Context context;
     private SharedPreferences preferencias;
@@ -17,12 +18,14 @@ public class Preferencias {
     private final String CHAVE_TELEFONE = "telefone";
     private final String CHAVE_TOKEN = "token";
 
+    /* Class constructor */
     public Preferencias(Context context){
-        this.context = context;
+        this.context = context; //get context
         preferencias = context.getSharedPreferences(NOME_ARQUIVO, MODE);
         editor = preferencias.edit();
     }
 
+    /* Save user preferences */
     public void salvarUsuarioReferencias(Usuario usuario, String token){
         editor.putString(CHAVE_NOME, usuario.getNome());
         editor.putString(CHAVE_TELEFONE, usuario.getTelefoneCompleto());
@@ -30,6 +33,7 @@ public class Preferencias {
         editor.commit();
     }
 
+    /* get user data from shared preferences */
     public HashMap<String, String> getDadosUsuario(){
         HashMap<String, String> dadosUsuarios = new HashMap<>();
 

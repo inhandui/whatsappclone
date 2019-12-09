@@ -43,19 +43,20 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /* Get user data from activity */
                 usuario = new Usuario();
-
                 usuario.setNome(txtNome.getText().toString());
                 usuario.setEmail(txtEmail.getText().toString());
                 usuario.setSenha(txtSenha.getText().toString());
 
-                cadastrarUsuario();
+                cadastrarUsuario(); //call function to save user to firebase
             }
         });
     }
 
+    /* Function to create and save user data to firebase and get user id from firebase  */
     private void cadastrarUsuario(){
-        firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
+        firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth(); //get firebase auth reference
         firebaseAuth.createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha())
                 .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -64,7 +65,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                     Toast.makeText(CadastroUsuarioActivity.this, R.string.cadastroUsuario_ok, Toast.LENGTH_SHORT).show();
                     firebaseUser = task.getResult().getUser();
                     usuario.setId(firebaseUser.getUid());
-                    usuario.salvar();
+                    usuario.salvar(); //save ser
                 }
                 else {
                     Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario, Toast.LENGTH_SHORT).show();

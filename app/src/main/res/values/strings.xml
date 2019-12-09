@@ -9,6 +9,7 @@
     <string name="btnValidar">Validar</string>
     <string name="erro_permissao">O app não tem permissão para enviar mensagens</string>
     <string name="envio_ok">Menssagem enviada</string>
+    <string name="erro_envio">Mensagem não pode ser enviada</string>
     <string name="mensagem_token">Seu token é </string>
     <string name="token_ok">Token validado</string>
     <string name="erro_token">O token não é válido</string>

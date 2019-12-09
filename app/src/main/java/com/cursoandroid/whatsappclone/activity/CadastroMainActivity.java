@@ -76,6 +76,7 @@ public class CadastroMainActivity extends AppCompatActivity {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /* Get user data from activity */
                 usuario = new Usuario();
                 usuario.setNome(txtNome.getText().toString());
                 numeroCompleto = codPais.getText().toString() + codArea.getText().toString() + telefone.getText().toString();
@@ -83,21 +84,22 @@ public class CadastroMainActivity extends AppCompatActivity {
                 numeroCompleto = numeroCompleto.replace("-", "");
                 usuario.setTelefoneCompleto(numeroCompleto);
 
-
+                /* Generate token */
                 random = new Random();
                 numeroRandom = random.nextInt( 9999 - 1000) + 1000;
                 token = String.valueOf(numeroRandom);
 
+                /* Save user data to local storage */
                 preferencias = new Preferencias(CadastroMainActivity.this);
                 preferencias.salvarUsuarioReferencias(usuario, token);
 
-                /* Perform send SMS */
-                int permitionCheck = ContextCompat.checkSelfPermission(CadastroMainActivity.this, Manifest.permission.SEND_SMS);
-                if (permitionCheck == PackageManager.PERMISSION_GRANTED){
+                /* Perform send SMS to delivery the user token */
+                int permitionCheck = ContextCompat.checkSelfPermission(CadastroMainActivity.this, Manifest.permission.SEND_SMS); //check send SMS permission
+                if (permitionCheck == PackageManager.PERMISSION_GRANTED){  //permission granted
                     //****WARNING***** Change localPhone to numeroCompleto before release to production (onRequestPermissionsResults too)
-                    enviarSMS(localPhone, token);
+                    enviarSMS(localPhone, token); //call send SMS function
                 }
-                else {
+                else { //permission denied
                     //try again
                     ActivityCompat.requestPermissions(CadastroMainActivity.this, new String[]{Manifest.permission.SEND_SMS}, REQUEST_PERMISSION_SEND_SMS);
                     Toast.makeText(CadastroMainActivity.this, R.string.erro_permissao, Toast.LENGTH_SHORT).show();
@@ -112,11 +114,17 @@ public class CadastroMainActivity extends AppCompatActivity {
 
     }
 
+    /* Send SMS function to delivery user token */
     private void enviarSMS(String telefone, String token) {
-        msgToken = getString(R.string.mensagem_token) + " " + token;
-        smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(telefone, null,  msgToken, null, null);
-        validarToken();
+        msgToken = getString(R.string.mensagem_token) + " " + token; //get token
+        smsManager = SmsManager.getDefault(); //get SMS manager
+        try{
+            smsManager.sendTextMessage(telefone, null,  msgToken, null, null); //send SMS
+            Toast.makeText(CadastroMainActivity.this, R.string.envio_ok, Toast.LENGTH_LONG).show(); //confirm SMS sended to user
+            validarToken(); //call function to validate token
+        } catch (Exception e){
+            Toast.makeText(CadastroMainActivity.this, R.string.erro_envio, Toast.LENGTH_LONG).show(); //SMS can't be sended to user
+        }
     }
 
     @Override
@@ -135,8 +143,8 @@ public class CadastroMainActivity extends AppCompatActivity {
         }
     }
 
+    /* call function to validate user token */
     private void validarToken(){
-        Toast.makeText(CadastroMainActivity.this, R.string.envio_ok, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(CadastroMainActivity.this, ValidadorActivity.class);
         startActivity(intent);
         finish();
