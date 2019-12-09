@@ -19,4 +19,7 @@
     <string name="hintEmail">Digite seu email</string>
     <string name="cadastroUsuario_ok">Usuário cadastrado com sucesso</string>
     <string name="erro_cadastroUsuario">Não foi possível cadastrar o usuário</string>
+    <string name="erro_cadastroUsuario_senhaFraca">Erro! A sua senha deve ter pelo menos 6 caracteres</string>
+    <string name="erro_cadastroUsuario_emailMalFormado">Erro! Email inválido</string>
+    <string name="erro_cadastroUsuario_emailJaCadastrado">Erro! Email já cadastrado</string>
 </resources>
