@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        verificarLogin();
+
         txtEmail = findViewById(R.id.txtEmail);
         txtSenha = findViewById(R.id.txtSenha);
         btnLogar = findViewById(R.id.btnLogar);
@@ -46,6 +48,13 @@ public class LoginActivity extends AppCompatActivity {
                 validarLogin();
             }
         });
+    }
+
+    private void verificarLogin(){
+        firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
+        if (firebaseAuth.getCurrentUser() !=  null){
+            abrirTelaPrincipal();
+        }
     }
 
     /* Function to validate user login get from user input  */
