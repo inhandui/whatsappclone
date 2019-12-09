@@ -22,4 +22,6 @@
     <string name="erro_cadastroUsuario_senhaFraca">Erro! A sua senha deve ter pelo menos 6 caracteres</string>
     <string name="erro_cadastroUsuario_emailMalFormado">Erro! Email inválido</string>
     <string name="erro_cadastroUsuario_emailJaCadastrado">Erro! Email já cadastrado</string>
+    <string name="login_ok">Login feito com sucesso</string>
+    <string name="erro_login">Não foi possível fazer login</string>
 </resources>
