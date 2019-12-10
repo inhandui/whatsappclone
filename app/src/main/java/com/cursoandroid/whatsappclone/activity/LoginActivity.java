@@ -42,10 +42,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 /* get user data from user input*/
                 usuario = new Usuario();
-                usuario.setEmail( txtEmail.getText().toString() );
-                usuario.setSenha( txtSenha.getText().toString() );
-
-                validarLogin();
+                if (!txtEmail.getText().toString().equals("") &&  !txtSenha.getText().toString().equals("")){
+                    usuario.setEmail( txtEmail.getText().toString() );
+                    usuario.setSenha( txtSenha.getText().toString() );
+                    validarLogin();
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, "Preencha os campos de email e senha", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
