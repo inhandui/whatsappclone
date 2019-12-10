@@ -19,12 +19,12 @@
         android:title="@string/opcao_pesquisar"
         android:orderInCategory="300"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_search_black_24dp"/>
+        android:icon="@drawable/ic_search_white_24dp"/>
 
     <item android:id="@+id/adicionar"
         android:title="@string/opcao_adicionar"
         android:orderInCategory="400"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_person_add_black_24dp"/>
+        android:icon="@drawable/ic_person_add_white_24dp"/>
 
 </menu>
