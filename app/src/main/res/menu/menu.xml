@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+
+    <item android:id="@+id/configuracoes"
+        android:title="@string/opcao_configuracao"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/sair"
+        android:title="@string/opcao_sair"
+        android:orderInCategory="200"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/pesquisar"
+        android:title="@string/opcao_pesquisar"
+        android:orderInCategory="300"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_search_black_24dp"/>
+
+    <item android:id="@+id/adicionar"
+        android:title="@string/opcao_adicionar"
+        android:orderInCategory="400"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_person_add_black_24dp"/>
+
+</menu>

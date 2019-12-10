@@ -25,4 +25,8 @@
     <string name="login_ok">Login feito com sucesso</string>
     <string name="erro_login">Não foi possível fazer login</string>
     <string name="btnSair">Sair</string>
+    <string name="opcao_sair">Sair</string>
+    <string name="opcao_configuracao">Configurações</string>
+    <string name="opcao_pesquisar">Pesquisar</string>
+    <string name="opcao_adicionar">Adicionar</string>
 </resources>
