@@ -10,7 +10,7 @@
         layout="@layout/toolbar" />
 
     <com.cursoandroid.whatsappclone.ui.SlidingTabLayout
-        android:id="@+id/stl_tabs"
+        android:id="@+id/stl_abas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
