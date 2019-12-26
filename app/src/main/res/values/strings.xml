@@ -29,4 +29,7 @@
     <string name="opcao_configuracao">Configurações</string>
     <string name="opcao_pesquisar">Pesquisar</string>
     <string name="opcao_adicionar">Adicionar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
