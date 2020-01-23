@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 
 import com.cursoandroid.whatsappclone.R;
 
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ContatosFragment extends Fragment {
-
+    private List<String> test;
 
     public ContatosFragment() {
         // Required empty public constructor
