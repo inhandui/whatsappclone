@@ -36,19 +36,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /* Adding layout elements reference */
         page_layout = findViewById(R.id.page_layout);
 //        appBar = page_layout.findViewById(R.id.appbar);
         tabLayout = page_layout.findViewById(R.id.tablayout);
         viewPager = page_layout.findViewById(R.id.viewpager);
 
+        /* Setting up Page Adapter */
         pageAdapter = new PageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         pageAdapter.addFragment(new ConversasFragment(), getResources().getText(R.string.conversas_fragment).toString());
         pageAdapter.addFragment(new ContatosFragment(), getResources().getText(R.string.contatos_fragment).toString());
 
+        /* Setting up View Pager */
         viewPager.setAdapter(pageAdapter);
 
+        //Setting up Tab Layout
         tabLayout.setupWithViewPager(viewPager);
 
+        //Get firebase authentincation
         firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
 
 
