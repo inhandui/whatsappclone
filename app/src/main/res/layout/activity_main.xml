@@ -6,8 +6,8 @@
     tools:context=".activity.MainActivity">
 
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar" />
+        android:id="@+id/appbar"
+        layout="@layout/appbar" />
 
     <com.cursoandroid.whatsappclone.ui.SlidingTabLayout
         android:id="@+id/stl_abas"

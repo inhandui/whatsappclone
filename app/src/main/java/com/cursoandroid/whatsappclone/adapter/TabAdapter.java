@@ -12,7 +12,7 @@ import com.cursoandroid.whatsappclone.fragment.ConversasFragment;
 
 public class TabAdapter extends FragmentStateAdapter {
 
-    private String[] tituloAbas = { "CONVERSAS", "CONTATOS"};
+    private String[] tituloAbas = { "Conversas", "Contatos"};
 
 
     public TabAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
