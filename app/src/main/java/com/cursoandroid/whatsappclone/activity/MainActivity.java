@@ -8,13 +8,25 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.cursoandroid.whatsappclone.R;
+import com.cursoandroid.whatsappclone.adapter.PageAdapter;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
+import com.cursoandroid.whatsappclone.fragment.ContatosFragment;
+import com.cursoandroid.whatsappclone.fragment.ConversasFragment;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AppBarLayout appBar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private PageAdapter pageAdapter;
     private FirebaseAuth firebaseAuth;
 
 
@@ -23,6 +35,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        appBar = findViewById(R.id.appbar);
+        tabLayout = findViewById(R.id.tablayout);
+        viewPager = findViewById(R.id.viewpager);
+
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        pageAdapter.addFragment(new ConversasFragment(), getResources().getText(R.string.conversas_fragment).toString());
+        pageAdapter.addFragment(new ContatosFragment(), getResources().getText(R.string.contatos_fragment).toString());
+
+        viewPager.setAdapter(pageAdapter);
+
+        tabLayout.setupWithViewPager(viewPager);
 
         firebaseAuth = ConfiguracaoFirebase.getFirebaseAuth();
 

@@ -10,12 +10,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabAdapter extends FragmentPagerAdapter {
+public class PageAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> abas = new ArrayList<>();
     private List<String> tituloAbas = new ArrayList<>();
 
-    public TabAdapter(@NonNull FragmentManager fm, int behavior) {
+    public PageAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
