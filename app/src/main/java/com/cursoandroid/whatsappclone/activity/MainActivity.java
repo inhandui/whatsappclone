@@ -18,7 +18,6 @@ import com.cursoandroid.whatsappclone.adapter.PageAdapter;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
 import com.cursoandroid.whatsappclone.fragment.ContatosFragment;
 import com.cursoandroid.whatsappclone.fragment.ConversasFragment;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
