@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout page_layout;
-    private AppBarLayout appBar;
+//    private AppBarLayout appBar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private PageAdapter pageAdapter;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         page_layout = findViewById(R.id.page_layout);
-        appBar = page_layout.findViewById(R.id.appbar);
+//        appBar = page_layout.findViewById(R.id.appbar);
         tabLayout = page_layout.findViewById(R.id.tablayout);
         viewPager = page_layout.findViewById(R.id.viewpager);
 
