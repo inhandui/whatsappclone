@@ -1,48 +1,44 @@
 package com.cursoandroid.whatsappclone.adapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import com.cursoandroid.whatsappclone.fragment.ContatosFragment;
-import com.cursoandroid.whatsappclone.fragment.ConversasFragment;
-
-public class TabAdapter extends FragmentStateAdapter {
-
-    private String[] tituloAbas = { "Conversas", "Contatos"};
+import androidx.fragment.app.FragmentPagerAdapter;
 
 
-    public TabAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
-        super(fragmentManager, lifecycle);
+import java.util.ArrayList;
+import java.util.List;
+
+public class TabAdapter extends FragmentPagerAdapter {
+
+    private List<Fragment> abas = new ArrayList<>();
+    private List<String> tituloAbas = new ArrayList<>();
+
+    public TabAdapter(@NonNull FragmentManager fm, int behavior) {
+        super(fm, behavior);
     }
 
     @NonNull
     @Override
-    public Fragment createFragment(int position) {
-        Fragment fragment = null;
-
-        switch (position){
-            case 0:
-                fragment = new ConversasFragment();
-                break;
-            case 1:
-                fragment = new ContatosFragment();
-                break;
-        }
-
-        return fragment;
+    public Fragment getItem(int position) {
+        return abas.get(position);
     }
+
 
     @Override
-    public int getItemCount() {
-        return tituloAbas.length;
+    public int getCount() {
+        return abas.size();
     }
 
+    public void addFragment(Fragment fragment, String title){
+        abas.add(fragment);
+        tituloAbas.add(title);
+    }
 
-    public String getTituloAbas(int position) {
-        return tituloAbas[position];
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return tituloAbas.get(position);
     }
 }
