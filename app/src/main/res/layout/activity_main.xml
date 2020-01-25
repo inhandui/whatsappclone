@@ -6,7 +6,7 @@
     tools:context=".activity.MainActivity">
 
     <include
-        android:id="@+id/appbar"
+        android:id="@+id/page_layout"
         layout="@layout/appbar_layout" />
 
 
