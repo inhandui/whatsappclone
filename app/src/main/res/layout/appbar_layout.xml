@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintStart_toEndOf="parent"/>
+        app:layout_constraintStart_toEndOf="parent"
+        />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
@@ -20,6 +21,14 @@
             app:layout_constraintTop_toBottomOf="@id/appbar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintStart_toEndOf="parent"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            android:background="@color/colorPrimary"
+            app:tabTextColor="@color/textColorPrimary"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorColor="@color/textColorPrimary"
+            app:tabIndicatorHeight="6dp"
+            app:tabIndicatorFullWidth="false"
         />
 
     <androidx.viewpager.widget.ViewPager
