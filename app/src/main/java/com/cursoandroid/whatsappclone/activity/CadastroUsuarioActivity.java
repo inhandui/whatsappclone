@@ -3,13 +3,16 @@ package com.cursoandroid.whatsappclone.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cursoandroid.whatsappclone.R;
+import com.cursoandroid.whatsappclone.data.Base64Custom;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
 import com.cursoandroid.whatsappclone.data.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -53,7 +56,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 usuario.setEmail(txtEmail.getText().toString());
                 usuario.setSenha(txtSenha.getText().toString());
 
-                cadastrarUsuario(); //call function to save user to firebase
+                cadastrarUsuario(); //Call function to save user to firebase
             }
         });
     }
@@ -69,12 +72,13 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 if (task.isSuccessful()){
                     Toast.makeText(CadastroUsuarioActivity.this, R.string.cadastroUsuario_ok, Toast.LENGTH_SHORT).show();
 
-                    firebaseUser = task.getResult().getUser();
-                    usuario.setId(firebaseUser.getUid()); //get user id from firebase
+                    /* encode user email and save to firebase user id */
+                    String idUsuario = Base64Custom.codificarBase64( usuario.getEmail() );
+                    usuario.setId(idUsuario); //get user id from Base64 encode.
                     usuario.salvar(); //save user data to firebase
 
-                    firebaseAuth.signOut();
-                    finish();
+                    //call function to login user
+                    abrirLoginUsuario();
                 }
                 else {
                     /* Show user friendly error messages related to user signup errors */
@@ -104,5 +108,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /* Call Login Activity */
+    private void abrirLoginUsuario(){
+        Intent intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
