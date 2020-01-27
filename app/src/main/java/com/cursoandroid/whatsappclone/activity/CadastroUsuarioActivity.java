@@ -83,9 +83,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                 else {
                     /* Show user friendly error messages related to user signup errors */
                     try {
-                        if (task.getException() != null){
-                            throw task.getException();
-                        }
+                        throw task.getException();
                     } catch (FirebaseAuthWeakPasswordException e){
 //                        Toast.makeText(CadastroUsuarioActivity.this, R.string.erro_cadastroUsuario_senhaFraca, Toast.LENGTH_SHORT).show();
                         result = R.string.erro_cadastroUsuario_senhaFraca;
