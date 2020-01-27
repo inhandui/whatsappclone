@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void deslogarUsuario(){
+    private void deslogarUsuario(){
         firebaseAuth.signOut();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
