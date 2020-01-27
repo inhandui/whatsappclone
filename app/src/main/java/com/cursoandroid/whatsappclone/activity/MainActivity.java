@@ -69,15 +69,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case R.id.pesquisar:
+                return true;
+            case R.id.adicionar:
+                abrirCadastroContato();
+                return true;
             case R.id.sair:
                 deslogarUsuario();
                 return true;
-            case R.id.pesquisar:
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
 
         }
+
+    }
+
+    private void abrirCadastroContato(){
 
     }
 
