@@ -11,7 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cursoandroid.whatsappclone.R;
+import com.cursoandroid.whatsappclone.data.Base64Custom;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
+import com.cursoandroid.whatsappclone.data.Preferencias;
 import com.cursoandroid.whatsappclone.data.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -71,6 +73,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()){
                             Toast.makeText( LoginActivity.this, R.string.login_ok, Toast.LENGTH_SHORT).show();
+
+                            String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+                            Preferencias preferencias = new Preferencias(LoginActivity.this);
+                            preferencias.salvarDadosUsuario(idUsuario);
+
                             abrirTelaPrincipal();
                             finish();
                         }

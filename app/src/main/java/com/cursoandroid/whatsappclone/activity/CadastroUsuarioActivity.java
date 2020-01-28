@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.cursoandroid.whatsappclone.R;
 import com.cursoandroid.whatsappclone.data.Base64Custom;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
+import com.cursoandroid.whatsappclone.data.Preferencias;
 import com.cursoandroid.whatsappclone.data.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -76,6 +77,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                     String idUsuario = Base64Custom.codificarBase64( usuario.getEmail() );
                     usuario.setId(idUsuario); //get user id from Base64 encode.
                     usuario.salvar(); //save user data to firebase
+
+                    /* save user id to preferences */
+                    Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
+                    preferencias.salvarDadosUsuario(idUsuario);
 
                     //call function to login user
                     abrirLoginUsuario();

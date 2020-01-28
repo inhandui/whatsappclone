@@ -91,7 +91,7 @@ public class CadastroMainActivity extends AppCompatActivity {
 
                 /* Save user data to local storage */
                 preferencias = new Preferencias(CadastroMainActivity.this);
-                preferencias.salvarUsuarioReferencias(usuario, token);
+                preferencias.salvarUsuarioPreferencias(usuario, token);
 
                 /* Perform send SMS to delivery the user token */
                 int permitionCheck = ContextCompat.checkSelfPermission(CadastroMainActivity.this, Manifest.permission.SEND_SMS); //check send SMS permission
@@ -139,7 +139,7 @@ public class CadastroMainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(CadastroMainActivity.this, R.string.erro_permissao, Toast.LENGTH_SHORT).show();
                 }
-                return;
+                break;
         }
     }
 

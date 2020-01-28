@@ -14,6 +14,7 @@ public class Preferencias {
     private final String NOME_ARQUIVO = "Whatsappclone.preferencias";
     private int MODE = 0;
     private SharedPreferences.Editor editor;
+    private final String CHAVE_ID = "idUsuarioLogado";
     private final String CHAVE_NOME = "nome";
     private final String CHAVE_TELEFONE = "telefone";
     private final String CHAVE_TOKEN = "token";
@@ -25,8 +26,18 @@ public class Preferencias {
         editor = preferencias.edit();
     }
 
+    /* Save loging data from user*/
+    public void salvarDadosUsuario(String idUsuario){
+        editor.putString(CHAVE_ID, idUsuario);
+        editor.commit();
+    }
+
+    public String getidUsuario(){
+        return preferencias.getString(CHAVE_ID, null);
+    }
+
     /* Save user preferences */
-    public void salvarUsuarioReferencias(Usuario usuario, String token){
+    public void salvarUsuarioPreferencias(Usuario usuario, String token){
         editor.putString(CHAVE_NOME, usuario.getNome());
         editor.putString(CHAVE_TELEFONE, usuario.getTelefoneCompleto());
         editor.putString(CHAVE_TOKEN, token);

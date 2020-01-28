@@ -35,4 +35,6 @@
     <string name="alertdialog_main_adicionarcontato_mensagem">Email do usuário</string>
     <string name="alertdialog_main_adicionarcontato_btn_positivo">Cadastrar</string>
     <string name="alertdialog_main_adicionarcontato_btn_negativo">Cancelar</string>
+    <string name="erro_alertdialog_main_adicionarcontato_emailvazio">Por favor! Preencha o email</string>
+    <string name="erro_alertdialog_main_adicionarcontato_emailnaocadastrado">Usuário não possui cadastro</string>
 </resources>
