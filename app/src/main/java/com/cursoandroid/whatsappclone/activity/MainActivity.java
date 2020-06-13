@@ -138,12 +138,13 @@ public class MainActivity extends AppCompatActivity {
                                 Preferencias preferencias = new Preferencias(MainActivity.this);
                                 String idUsuario = preferencias.getidUsuario();
 
-                                //Setup database reference for the inset query
+                                //Setup database reference for the insert query
                                 databaseReference = ConfiguracaoFirebase.getFirebase()
                                                                         .child("contatos")
                                                                         .child(idUsuario)
                                                                         .child(idContato);
 
+                                //setting contato id
                                 if (contato.getId() == null){
                                     contato.setId(idContato);
                                 }
