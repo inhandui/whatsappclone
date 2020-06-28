@@ -13,7 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.cursoandroid.whatsappclone.R;
+import com.cursoandroid.whatsappclone.adapter.ContatoAdapter;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
+import com.cursoandroid.whatsappclone.data.Contato;
 import com.cursoandroid.whatsappclone.data.Preferencias;
 import com.cursoandroid.whatsappclone.data.Usuario;
 import com.google.firebase.database.DataSnapshot;
@@ -31,10 +33,10 @@ public class ContatosFragment extends Fragment {
 
     private ListView listView;
     private ArrayAdapter adapter;
-    private ArrayList<Usuario> contatos;
+    private ArrayList<Contato> contatos;
     private DatabaseReference databaseReference;
     private Preferencias preferencias;
-    private Usuario contato;
+    private Contato contato;
     private ValueEventListener valueEventListenerContatos;
 
     public ContatosFragment() {
@@ -62,14 +64,15 @@ public class ContatosFragment extends Fragment {
 
 
         //Instantiate array list
-        contatos = new ArrayList<Usuario>();
+        contatos = new ArrayList<Contato>();
 
 
         // Adding layout element reference
         listView = view.findViewById(R.id.lv_contatos);
 
         // Setting up array adapter
-        adapter = new ArrayAdapter(getActivity(), R.layout.list_contatos, contatos);
+//        adapter = new ArrayAdapter(getActivity(), R.layout.list_contatos, contatos);
+        adapter = new ContatoAdapter(getActivity(), contatos);
 
         //Setting up list view
         listView.setAdapter(adapter);
@@ -90,7 +93,7 @@ public class ContatosFragment extends Fragment {
 
                 //list contacts
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
-                    contato = dados.getValue(Usuario.class);
+                    contato = dados.getValue(Contato.class);
                     contatos.add( contato );
                 }
 
