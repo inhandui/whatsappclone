@@ -7,11 +7,12 @@ import androidx.annotation.NonNull;
 
 import com.cursoandroid.whatsappclone.data.Contato;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 public class ContatoAdapter extends ArrayAdapter<Contato> {
 
-    public ContatoAdapter(@NonNull Context context, int resource, @NonNull List<Contato> objects) {
-        super(context, resource, objects);
+    public ContatoAdapter(@NonNull Context context, @NonNull ArrayList<Contato> objects) {
+        super(context, 0, objects);
     }
 }
