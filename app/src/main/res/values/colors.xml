@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorDivider">@android:color/white</color>
     <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorSecondary">#000000</color>
+    <color name="colorDividerSecondary">@android:color/darker_gray</color>
 </resources>
