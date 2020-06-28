@@ -31,7 +31,7 @@ public class ContatosFragment extends Fragment {
 
     private ListView listView;
     private ArrayAdapter adapter;
-    private ArrayList<String> contatos;
+    private ArrayList<Usuario> contatos;
     private DatabaseReference databaseReference;
     private Preferencias preferencias;
     private Usuario contato;
@@ -62,7 +62,7 @@ public class ContatosFragment extends Fragment {
 
 
         //Instantiate array list
-        contatos = new ArrayList<String>();
+        contatos = new ArrayList<Usuario>();
 
 
         // Adding layout element reference
@@ -91,7 +91,7 @@ public class ContatosFragment extends Fragment {
                 //list contacts
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
                     contato = dados.getValue(Usuario.class);
-                    contatos.add(contato.getNome());
+                    contatos.add( contato );
                 }
 
                 adapter.notifyDataSetChanged();
