@@ -1,6 +1,7 @@
 package com.cursoandroid.whatsappclone.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.cursoandroid.whatsappclone.R;
+import com.cursoandroid.whatsappclone.activity.ConversaActivity;
 import com.cursoandroid.whatsappclone.adapter.ContatoAdapter;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
 import com.cursoandroid.whatsappclone.data.Contato;
@@ -106,7 +109,14 @@ public class ContatosFragment extends Fragment {
             }
         };
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ConversaActivity.class);
 
+                startActivity(intent);
+            }
+        });
 
 
         return view;
