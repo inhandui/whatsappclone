@@ -87,6 +87,7 @@ public class ContatosFragment extends Fragment {
         //get user contact list
         databaseReference = ConfiguracaoFirebase.getFirebase().child("contatos").child(idUsuario);
 
+        //Create an event listener to "contatos" list view data.
         valueEventListenerContatos =  new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -109,6 +110,7 @@ public class ContatosFragment extends Fragment {
             }
         };
 
+        //Open "conversa" activity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
