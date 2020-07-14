@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cursoandroid.whatsappclone.R;
+import com.cursoandroid.whatsappclone.adapter.MensagemAdapter;
 import com.cursoandroid.whatsappclone.data.Base64Custom;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
 import com.cursoandroid.whatsappclone.data.Mensagem;
@@ -36,8 +37,8 @@ public class ConversaActivity extends AppCompatActivity {
 
     //Activity Data
     private Mensagem mensagem;
-    private ArrayList<String> mensagens;
-    private ArrayAdapter arrayAdapter;
+    private ArrayList<Mensagem> mensagens;
+    private ArrayAdapter<Mensagem> arrayAdapter;
     private ValueEventListener valueEventListenerMensagem;
 
     //User data
@@ -58,7 +59,7 @@ public class ConversaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversa);
 
-        /* Adding layout elements reference */
+        /* Get layout elements reference */
         appToolbar = findViewById(R.id.tb_conversa);
         txt_mensagem = findViewById(R.id.mensagem);
         btn_enviar = findViewById(R.id.btn_enviar);
@@ -85,8 +86,9 @@ public class ConversaActivity extends AppCompatActivity {
         setSupportActionBar(appToolbar);
 
         /* Set listview messages */
-        mensagens = new ArrayList<String>();
-        arrayAdapter = new ArrayAdapter(ConversaActivity.this, android.R.layout.simple_list_item_1);
+        mensagens = new ArrayList<Mensagem>();
+        arrayAdapter = new MensagemAdapter(ConversaActivity.this, mensagens);
+//        arrayAdapter = new ArrayAdapter(ConversaActivity.this, android.R.layout.simple_list_item_1);
         lv_mensagens.setAdapter( arrayAdapter );
 
         //Retrieve messagens from firebase
@@ -102,7 +104,7 @@ public class ConversaActivity extends AppCompatActivity {
                 //retrieve messages
                 for (DataSnapshot dados: dataSnapshot.getChildren()){
                     mensagem = dados.getValue( Mensagem.class );
-                    mensagens.add(mensagem.getMensagem());
+                    mensagens.add( mensagem );
                 }
 
                 //notify
