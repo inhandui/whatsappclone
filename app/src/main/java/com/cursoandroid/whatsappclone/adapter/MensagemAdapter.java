@@ -63,7 +63,7 @@ public class MensagemAdapter extends ArrayAdapter<Mensagem> {
 
 
             //Get Ui element reference
-            tv_mensagem = (TextView) view.findViewById(R.id.tv_mensagem);
+            tv_mensagem = view.findViewById(R.id.tv_mensagem);
             tv_mensagem.setText(mensagem.getMensagem());
         }
 
