@@ -19,8 +19,17 @@ public class ConversaActivity extends AppCompatActivity {
         /* Adding layout elements reference */
         appToolbar = findViewById(R.id.tb_conversa);
 
-        //set toolbar
-        appToolbar.setTitle("Fulano");
+        Bundle extra = getIntent().getExtras();
+
+        if (extra != null){
+            //set toolbar title
+            appToolbar.setTitle(extra.getString("nome"));
+        }
+        else {
+            appToolbar.setTitle("Undefined");
+        }
+
+
         setSupportActionBar(appToolbar);
 
     }
