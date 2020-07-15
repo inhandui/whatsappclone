@@ -48,6 +48,8 @@ public class ConversaActivity extends AppCompatActivity {
     private String nomeDestinatario;
     private String idDestinatario;
     private String emailDestinatario;
+    private boolean retornoMensagemRemetente;
+    private boolean retornoMensagemDestinatario;
 
     //Firebase reference
     private DatabaseReference databaseReference;
@@ -137,8 +139,17 @@ public class ConversaActivity extends AppCompatActivity {
                     mensagem.setMensagem(texto_mensagem);
 
                     //Save data message
-                    salvarMensagemRemetente(idDestinatario, mensagem);
-                    salvarMensagemDestinatario(idDestinatario, mensagem);
+                    retornoMensagemRemetente = salvarMensagemRemetente(idDestinatario, mensagem);
+                    if (!retornoMensagemRemetente){
+                        Toast.makeText(ConversaActivity.this, R.string.erro_mensagem_envio, Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        retornoMensagemDestinatario = salvarMensagemDestinatario(idDestinatario, mensagem);
+                        if (!retornoMensagemDestinatario){
+                            Toast.makeText(ConversaActivity.this, R.string.erro_mensagem_envio, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
 
                     //delete data from message EditText
                     txt_mensagem.setText("");
