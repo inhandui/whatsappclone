@@ -29,7 +29,7 @@
     <ListView
         android:id="@+id/lv_mensagens"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/appbar"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -37,6 +37,7 @@
         android:padding="8dp"
         android:divider="@color/colorDividerSecondary"
         android:dividerHeight="1dp"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_marginBottom="?attr/actionBarSize"
         />
 

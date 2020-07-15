@@ -137,7 +137,8 @@ public class ConversaActivity extends AppCompatActivity {
                     mensagem.setMensagem(texto_mensagem);
 
                     //Save data message
-                    salvarMensagem(idDestinatario, mensagem);
+                    salvarMensagemRemetente(idDestinatario, mensagem);
+                    salvarMensagemDestinatario(idDestinatario, mensagem);
 
                     //delete data from message EditText
                     txt_mensagem.setText("");
@@ -147,11 +148,26 @@ public class ConversaActivity extends AppCompatActivity {
 
     }
 
-    private boolean salvarMensagem(String idDestinatario, Mensagem mensagem){
+    private boolean salvarMensagemRemetente(String idDestinatario, Mensagem mensagem){
         boolean retorno = false;
         try {
             databaseReference = ConfiguracaoFirebase.getFirebase().child("mensagens");
             databaseReference.child(mensagem.getId()).child(idDestinatario).push().setValue(mensagem);
+            retorno = true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return retorno;
+    }
+
+    private boolean salvarMensagemDestinatario(String idDestinatario, Mensagem mensagem){
+        boolean retorno = false;
+        try {
+            databaseReference = ConfiguracaoFirebase.getFirebase().child("mensagens");
+            databaseReference.child(idDestinatario).child(mensagem.getId()).push().setValue(mensagem);
             retorno = true;
 
         }catch (Exception e){
