@@ -39,4 +39,5 @@
     <string name="erro_alertdialog_main_adicionarcontato_emailnaocadastrado">Usuário não possui cadastro</string>
     <string name="erro_mensagem_vazia">"Digite uma mensagem antes de enviar"</string>
     <string name="erro_mensagem_envio">"A mensagem não pode ser enviada"</string>
+    <string name="erro_conversa_envio">"A conversar não pode ser aberta"</string>
 </resources>

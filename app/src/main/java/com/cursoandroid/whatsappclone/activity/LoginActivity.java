@@ -19,14 +19,27 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
+    /* Ui elements*/
     private EditText txtEmail;
     private EditText txtSenha;
     private Button btnLogar;
+
+    /* User data */
     private Usuario usuario;
+    private String idUsuario;
+    private Preferencias preferencias;
+
+    //Firebase reference
+    private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
+    private ValueEventListener valueEventListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +87,31 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
                             Toast.makeText( LoginActivity.this, R.string.login_ok, Toast.LENGTH_SHORT).show();
 
-                            String idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
-                            Preferencias preferencias = new Preferencias(LoginActivity.this);
-                            preferencias.salvarDadosUsuario(idUsuario);
+                            idUsuario = Base64Custom.codificarBase64(usuario.getEmail());
+
+                            if (usuario.getNome().equals("")){
+                                databaseReference = ConfiguracaoFirebase.getFirebase().child("usuarios").child(idUsuario);
+
+                                valueEventListener = new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        Usuario usuarioRecuperado = dataSnapshot.getValue(Usuario.class);
+
+                                        usuario.setNome(usuarioRecuperado.getNome());
+
+                                        preferencias = new Preferencias(LoginActivity.this);
+                                        preferencias.salvarUsuarioPreferencias(usuario);
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                };
+
+                                databaseReference.addListenerForSingleValueEvent(valueEventListener);
+                            }
+
 
                             abrirTelaPrincipal();
                             finish();

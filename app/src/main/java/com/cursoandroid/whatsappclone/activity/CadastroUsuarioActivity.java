@@ -35,7 +35,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private Usuario usuario;
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
     private int result;
 
     @Override
@@ -80,7 +79,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
                     /* save user id to preferences */
                     Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
-                    preferencias.salvarDadosUsuario(idUsuario);
+                    preferencias.salvarUsuarioPreferencias(usuario);
 
                     //call function to login user
                     abrirLoginUsuario();

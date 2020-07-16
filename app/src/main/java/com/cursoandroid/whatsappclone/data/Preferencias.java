@@ -32,11 +32,25 @@ public class Preferencias {
         editor.commit();
     }
 
+    /* get user id */
     public String getidUsuario(){
         return preferencias.getString(CHAVE_ID, null);
     }
 
+    /* get user name */
+    public String getNome(){
+        return preferencias.getString(CHAVE_NOME, null);
+    }
+
     /* Save user preferences */
+    public void salvarUsuarioPreferencias(Usuario usuario){
+        editor.putString(CHAVE_ID, usuario.getId());
+        editor.putString(CHAVE_NOME, usuario.getNome());
+        editor.putString(CHAVE_TELEFONE, usuario.getTelefoneCompleto());
+        editor.commit();
+    }
+
+    /* Save user preferences with token */
     public void salvarUsuarioPreferencias(Usuario usuario, String token){
         editor.putString(CHAVE_NOME, usuario.getNome());
         editor.putString(CHAVE_TELEFONE, usuario.getTelefoneCompleto());
