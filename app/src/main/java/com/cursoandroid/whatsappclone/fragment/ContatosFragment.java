@@ -85,7 +85,10 @@ public class ContatosFragment extends Fragment {
         String idUsuario = preferencias.getidUsuario();
 
         //get user contact list
-        databaseReference = ConfiguracaoFirebase.getFirebase().child("contatos").child(idUsuario);
+        if (idUsuario!= null){
+            databaseReference = ConfiguracaoFirebase.getFirebase().child("contatos").child(idUsuario);
+        }
+
 
         //Create an event listener to "contatos" list view data.
         valueEventListenerContatos =  new ValueEventListener() {

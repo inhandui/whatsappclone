@@ -15,7 +15,6 @@ import com.cursoandroid.whatsappclone.R;
 import com.cursoandroid.whatsappclone.adapter.MensagemAdapter;
 import com.cursoandroid.whatsappclone.data.Base64Custom;
 import com.cursoandroid.whatsappclone.data.ConfiguracaoFirebase;
-import com.cursoandroid.whatsappclone.data.Conversa;
 import com.cursoandroid.whatsappclone.data.Mensagem;
 import com.cursoandroid.whatsappclone.data.Preferencias;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -40,21 +39,15 @@ public class ConversaActivity extends AppCompatActivity {
     private ArrayList<Mensagem> mensagens;
     private ArrayAdapter<Mensagem> arrayAdapter;
     private ValueEventListener valueEventListenerMensagem;
-    private Conversa conversa;
 
     //User data
     private Preferencias preferencias;
     private String idRemetente;
-    private String nomeRemetente;
-    private boolean retornoMensagemRemetente;
-    private boolean retornoConversaRemetente;
 
     //Receiver user data
     private String nomeDestinatario;
     private String idDestinatario;
     private String emailDestinatario;
-    private boolean retornoMensagemDestinatario;
-    private boolean retornoConversaDestinatario;
 
     //Firebase reference
     private DatabaseReference databaseReference;
@@ -75,7 +68,6 @@ public class ConversaActivity extends AppCompatActivity {
         /* get user data */
         preferencias = new Preferencias(ConversaActivity.this);
         idRemetente = preferencias.getidUsuario();
-        nomeRemetente = preferencias.getNome();
 
         /* Get contato data and set toolbar title*/
         Bundle extra = getIntent().getExtras();
@@ -144,43 +136,9 @@ public class ConversaActivity extends AppCompatActivity {
                     mensagem.setId(idRemetente);
                     mensagem.setMensagem(texto_mensagem);
 
-                    /* Save message data */
-                    retornoMensagemRemetente = salvarMensagemRemetente(idDestinatario, mensagem);
-                    if (!retornoMensagemRemetente){
-                        Toast.makeText(ConversaActivity.this, R.string.erro_mensagem_envio, Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        retornoMensagemDestinatario = salvarMensagemDestinatario(idDestinatario, mensagem);
-                        if (!retornoMensagemDestinatario){
-                            Toast.makeText(ConversaActivity.this, R.string.erro_mensagem_envio, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    /* Set sender chat data */
-                    conversa = new Conversa();
-                    conversa.setIdUsuario(idDestinatario);
-                    conversa.setNome(nomeDestinatario);
-                    conversa.setMensagem(texto_mensagem);
-
-                    //save chat from sender
-                    retornoConversaRemetente = salvarConversa(idRemetente, idDestinatario, conversa);
-                    if (!retornoConversaRemetente){
-                        Toast.makeText(ConversaActivity.this, R.string.erro_conversa_envio, Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        /* Set receiver chat data */
-                        conversa = new Conversa();
-                        conversa.setIdUsuario(idRemetente);
-                        conversa.setNome(nomeRemetente);
-                        conversa.setMensagem(texto_mensagem);
-
-                        //save chat to receiver
-                        retornoConversaDestinatario = salvarConversa(idDestinatario, idRemetente, conversa);
-                        if (!retornoConversaDestinatario){
-                            Toast.makeText(ConversaActivity.this, R.string.erro_conversa_envio, Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
+                    //Save data message
+                    salvarMensagemRemetente(idDestinatario, mensagem);
+                    salvarMensagemDestinatario(idDestinatario, mensagem);
 
                     //delete data from message EditText
                     txt_mensagem.setText("");
@@ -190,7 +148,6 @@ public class ConversaActivity extends AppCompatActivity {
 
     }
 
-    /* Save data from sender */
     private boolean salvarMensagemRemetente(String idDestinatario, Mensagem mensagem){
         boolean retorno = false;
         try {
@@ -206,7 +163,6 @@ public class ConversaActivity extends AppCompatActivity {
         return retorno;
     }
 
-    /* Save data to receiver */
     private boolean salvarMensagemDestinatario(String idDestinatario, Mensagem mensagem){
         boolean retorno = false;
         try {
@@ -218,20 +174,6 @@ public class ConversaActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        return retorno;
-    }
-
-    /* Save chat */
-    private boolean salvarConversa(String idRemetente, String idDestinatario, Conversa conversa){
-        boolean retorno = false;
-        try {
-            databaseReference = ConfiguracaoFirebase.getFirebase().child("conversa");
-            databaseReference.child(idRemetente).child(idDestinatario).setValue( conversa );
-            retorno = true;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
 
         return retorno;
     }
